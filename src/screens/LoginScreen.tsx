@@ -5,8 +5,11 @@ import {
   TouchableOpacity,
   View,
   Text,
+  Alert,
+  ImageSourcePropType,
+  GestureResponderEvent,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { Color } from '../assets/styles/colors';
 import CustomHeader from '../componets/CustomHeader';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
@@ -14,8 +17,30 @@ import useCustomNavigation from '../hooks/useCustomNavigation';
 import { RFValue } from 'react-native-responsive-fontsize';
 import CustomTextInput from '../componets/CustomTextInput';
 
+interface SocialButtonProps {
+  icon: ImageSourcePropType;
+  onPress: (event: GestureResponderEvent) => void;
+}
+
+const SocialButton = ({ icon, onPress }: SocialButtonProps) => (
+  <TouchableOpacity style={styles.socialContainer} onPress={onPress}>
+    <Image source={icon} style={styles.fbIconStyle} resizeMode="contain" />
+  </TouchableOpacity>
+);
+
 const LoginScreen = () => {
   const navigation = useCustomNavigation('LoginScreen');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleLogin = () => {
+    if (!email.trim() || !password.trim()) {
+      Alert.alert('Enter Email or Password');
+    } else {
+      console.log(email, password);
+    }
+  };
   return (
     <View style={styles.container}>
       <StatusBar
@@ -49,55 +74,75 @@ const LoginScreen = () => {
           <CustomTextInput
             title="Email or Mobile Number"
             placeholder="example@example.com"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
           />
           <CustomTextInput
             title="Password"
             placeholder="Enter Password"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry={!showPassword}
             rightButtonComponent={
-              <TouchableOpacity style={styles.hideIconStyle}>
+              <TouchableOpacity
+                style={styles.hideIconStyle}
+                onPress={() => {
+                  setShowPassword(!showPassword);
+                }}
+              >
                 <Image
-                  source={require('../assets/icons/hide_password.png')}
+                  source={
+                    showPassword
+                      ? require('../assets/icons/show_password.png')
+                      : require('../assets/icons/hide_password.png')
+                  }
                   style={styles.hideIcon}
                   resizeMode="contain"
                 />
               </TouchableOpacity>
             }
           />
-          <TouchableOpacity style={styles.forgetPasswordContainer}>
+          <TouchableOpacity
+            style={styles.forgetPasswordContainer}
+            onPress={() => navigation.navigate('ForgetPasswordScreen')}
+          >
             <Text style={styles.forgetPasswordStyle}>{'Forget Password?'}</Text>
           </TouchableOpacity>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.loginButtonStyle}>
+            <TouchableOpacity
+              style={styles.loginButtonStyle}
+              onPress={handleLogin}
+            >
               <Text style={styles.loginButtonTextStyle}>{'Log In'}</Text>
             </TouchableOpacity>
             <Text>{'or sign up with'}</Text>
           </View>
           <View style={styles.socialContainerBox}>
-            <TouchableOpacity style={styles.socialContainer}>
-              <Image
-                source={require('../assets/icons/google_logo.png')}
-                style={styles.googleIconStyle}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.socialContainer}>
-              <Image
-                source={require('../assets/icons/fb_logo.png')}
-                style={styles.fbIconStyle}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.socialContainer}>
-              <Image
-                source={require('../assets/icons/bio_logo.png')}
-                style={styles.fbIconStyle}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
+            <SocialButton
+              icon={require('../assets/icons/google_logo.png')}
+              onPress={() => {
+                console.log('google');
+              }}
+            />
+            <SocialButton
+              icon={require('../assets/icons/fb_logo.png')}
+              onPress={() => {
+                console.log('fb');
+              }}
+            />
+            <SocialButton
+              icon={require('../assets/icons/bio_logo.png')}
+              onPress={() => {
+                console.log('bio');
+              }}
+            />
           </View>
           <View style={styles.dontHaveAccountContainer}>
             <Text>{'Don’t have an account? '}</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('SignupScreen')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('SignupScreen')}
+            >
               <Text style={{ color: Color.PRIMARY_COLOR }}>{'Sign Up'}</Text>
             </TouchableOpacity>
           </View>
@@ -157,7 +202,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 10,
   },
-  loginButtonTextStyle: { color: Color.WHITE, fontSize: 20,fontWeight:'700' },
+  loginButtonTextStyle: { color: Color.WHITE, fontSize: 20, fontWeight: '700' },
   signUpWithStyle: { alignItems: 'center', width: '100%' },
   socialContainer: {
     height: 40,
@@ -177,7 +222,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 30,
   },
-  googleIconStyle: { height: 18, width: 18 },
   fbIconStyle: { height: 25, width: 25 },
   dontHaveAccountContainer: { justifyContent: 'center', flexDirection: 'row' },
+  grayText: { color: Color.BLACK, fontSize: RFValue(13) },
+  signUpText: {
+    color: Color.PRIMARY_COLOR,
+    fontSize: RFValue(13),
+    fontWeight: '700',
+  },
+  orTextStyle: { color: Color.BLACK, fontSize: RFValue(12) },
 });

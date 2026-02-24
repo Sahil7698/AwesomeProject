@@ -87,7 +87,7 @@ const useStyles = () => {
       fontWeight: '500',
     },
     headerTitle: {
-      fontSize: RFValue(24),
+      fontSize: RFValue(20),
       fontWeight: '700',
       color: Color.PRIMARY_COLOR,
     },

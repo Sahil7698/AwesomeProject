@@ -1,12 +1,14 @@
 import {
+  GestureResponderEvent,
   Image,
+  ImageSourcePropType,
   StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import CustomHeader from '../componets/CustomHeader';
 import { Color } from '../assets/styles/colors';
 import CustomTextInput from '../componets/CustomTextInput';
@@ -14,8 +16,29 @@ import useCustomNavigation from '../hooks/useCustomNavigation';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
+interface SocialButtonProps {
+  icon: ImageSourcePropType;
+  onPress: (event: GestureResponderEvent) => void;
+}
+
+const SocialButton = ({ icon, onPress }: SocialButtonProps) => (
+  <TouchableOpacity style={styles.socialContainer} onPress={onPress}>
+    <Image source={icon} style={styles.fbIconStyle} resizeMode="contain" />
+  </TouchableOpacity>
+);
+
 const SignupScreen = () => {
   const navigation = useCustomNavigation('SignupScreen');
+  const [fullName, setFullName] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [dob, setDob] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleSignup = () => {
+    console.log({ fullName, email, password, mobile, dob });
+  };
   return (
     <View style={styles.container}>
       <StatusBar
@@ -39,29 +62,59 @@ const SignupScreen = () => {
         }
       />
       <View style={styles.bodyContainer}>
-        <CustomTextInput title="Full Name" placeholder="Enter Your Full Name" />
+        <CustomTextInput
+          title="Full Name"
+          placeholder="Enter Your Full Name"
+          value={fullName}
+          onChangeText={setFullName}
+        />
         <CustomTextInput
           title="Password"
           placeholder="Enter Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={!showPassword}
           rightButtonComponent={
-            <TouchableOpacity style={styles.hideIconStyle}>
+            <TouchableOpacity
+              style={styles.hideIconStyle}
+              onPress={() => setShowPassword(!showPassword)}
+            >
               <Image
-                source={require('../assets/icons/hide_password.png')}
+                source={
+                  showPassword
+                    ? require('../assets/icons/show_password.png')
+                    : require('../assets/icons/hide_password.png')
+                }
                 style={styles.hideIcon}
                 resizeMode="contain"
               />
             </TouchableOpacity>
           }
         />
-        <CustomTextInput title="Email" placeholder="Enter Your Email" />
+        <CustomTextInput
+          title="Email"
+          placeholder="Enter Your Email"
+          keyboardType="email-address"
+          value={email}
+          onChangeText={setEmail}
+          autoCapitalize="none"
+        />
         <CustomTextInput
           title="Mobile Number"
           placeholder="Enter Your Mobile Number"
+          keyboardType="phone-pad"
+          value={mobile}
+          onChangeText={setMobile}
         />
-        <CustomTextInput title="Date Of Birth" placeholder="DD/MM/YY" />
+        <CustomTextInput
+          title="Date Of Birth"
+          placeholder="DD/MM/YY"
+          value={dob}
+          onChangeText={setDob}
+        />
         <View style={styles.buttonContainer}>
           <Text>{'By continuing, you agree to'}</Text>
-          <View style={{ flexDirection: 'row' }}>
+          <View style={styles.termTextStyle}>
             <TouchableOpacity>
               <Text style={{ color: Color.PRIMARY_COLOR }}>
                 {'Terms of Use'}
@@ -74,38 +127,32 @@ const SignupScreen = () => {
               </Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.loginButtonStyle}>
+          <TouchableOpacity
+            style={styles.loginButtonStyle}
+            onPress={handleSignup}
+          >
             <Text style={styles.loginButtonTextStyle}>{'Sign Up'}</Text>
           </TouchableOpacity>
           <Text>{'or sign up with'}</Text>
         </View>
         <View style={styles.socialContainerBox}>
-          <TouchableOpacity style={styles.socialContainer}>
-            <Image
-              source={require('../assets/icons/google_logo.png')}
-              style={styles.googleIconStyle}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.socialContainer}>
-            <Image
-              source={require('../assets/icons/fb_logo.png')}
-              style={styles.fbIconStyle}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.socialContainer}>
-            <Image
-              source={require('../assets/icons/bio_logo.png')}
-              style={styles.fbIconStyle}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
+          <SocialButton
+            icon={require('../assets/icons/google_logo.png')}
+            onPress={() => {}}
+          />
+          <SocialButton
+            icon={require('../assets/icons/fb_logo.png')}
+            onPress={() => {}}
+          />
+          <SocialButton
+            icon={require('../assets/icons/bio_logo.png')}
+            onPress={() => {}}
+          />
         </View>
         <View style={styles.dontHaveAccountContainer}>
-          <Text>{'Don’t have an account? '}</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('SignupScreen')}>
-            <Text style={{ color: Color.PRIMARY_COLOR }}>{'Sign Up'}</Text>
+          <Text>{'Already have an account? '}</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
+            <Text style={{ color: Color.PRIMARY_COLOR }}>{'Log In'}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -172,7 +219,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 30,
   },
-  googleIconStyle: { height: 18, width: 18 },
   fbIconStyle: { height: 25, width: 25 },
   dontHaveAccountContainer: { justifyContent: 'center', flexDirection: 'row' },
+  termTextStyle: { flexDirection: 'row' },
 });

@@ -5,6 +5,7 @@ import { RootStackParamList } from '../types/RootStackProps';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
+import ForgetPasswordScreen from '../screens/ForgetPasswordScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const AppNavigation = () => {
@@ -24,6 +25,11 @@ const AppNavigation = () => {
         <Stack.Screen
           name="SignupScreen"
           component={SignupScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ForgetPasswordScreen"
+          component={ForgetPasswordScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

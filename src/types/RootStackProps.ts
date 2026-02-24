@@ -4,6 +4,7 @@ export type RootStackParamList = {
   WelcomeScreen?: undefined;
   LoginScreen?: undefined;
   SignupScreen?: undefined;
+  ForgetPasswordScreen?: undefined;
   TabStack: NavigatorScreenParams<TabStackParamList>;
 };
 
