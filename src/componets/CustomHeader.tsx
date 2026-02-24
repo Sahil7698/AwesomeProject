@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ViewStyle } from 'react-native';
+import { StyleSheet, Text, TextStyle, View, ViewStyle } from 'react-native';
 import React, { memo } from 'react';
 import {
   heightPercentageToDP as hp,
@@ -14,6 +14,7 @@ interface headerProps {
   headerRightComponent?: React.ReactNode;
   viewStyle?: ViewStyle;
   headerCenteredComponent?: React.ReactNode;
+  titleStyle?: TextStyle;
 }
 const CustomHeader = (props: headerProps) => {
   const styles = useStyles();
@@ -23,7 +24,10 @@ const CustomHeader = (props: headerProps) => {
         <View style={styles.headerLeft}>{props.headerLeftComponent}</View>
         <View style={styles.headerCenter}>
           {props.title ? (
-            <Text numberOfLines={1} style={styles.headerTitle}>
+            <Text
+              numberOfLines={1}
+              style={[styles.headerTitle, props.titleStyle]}
+            >
               {props.title}
             </Text>
           ) : (
