@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useRef } from 'react';
 import { Color } from '../assets/styles/colors';
 import CustomHeader from '../componets/CustomHeader';
 import useCustomNavigation from '../hooks/useCustomNavigation';
@@ -17,6 +17,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { RFValue } from 'react-native-responsive-fontsize';
+import RBSheet from 'react-native-raw-bottom-sheet';
 
 type ProfileOption = {
   id: number;
@@ -25,8 +26,14 @@ type ProfileOption = {
   onPress?: () => void;
 };
 
+interface RBSheetRef {
+  open: () => void;
+  close: () => void;
+}
+
 const ProfileScreen = () => {
   const navigation = useCustomNavigation('ProfileScreen');
+  const refRBSheet = useRef<RBSheetRef | null>(null);
 
   const profileListData = [
     {
@@ -77,7 +84,7 @@ const ProfileScreen = () => {
       id: 7,
       icon: require('../assets/icons/logout_icon.png'),
       name: 'Logout',
-      onPress: () => {},
+      onPress: () => refRBSheet?.current?.open(),
     },
   ];
 
@@ -140,6 +147,50 @@ const ProfileScreen = () => {
           />
         </View>
       </View>
+      <RBSheet
+        ref={refRBSheet}
+        useNativeDriver={true}
+        customModalProps={{
+          animationType: 'slide',
+          statusBarTranslucent: true,
+        }}
+        customAvoidingViewProps={{
+          enabled: false,
+        }}
+        customStyles={{
+          container: {
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30,
+            height: hp(25),
+          },
+          wrapper: {
+            backgroundColor: '#2260FF8A',
+          },
+        }}
+      >
+        <View style={styles.logoutSheetContainer}>
+          <Text style={styles.logoutTextStyle}>{'Logout'}</Text>
+          <Text
+            style={{
+              color: Color.BLACK,
+              fontSize: RFValue(14),
+            }}
+          >
+            {'are you sure you want to log out?'}
+          </Text>
+          <View style={styles.sheetButtonStyle}>
+            <TouchableOpacity
+              style={styles.cancelButtonStyle}
+              onPress={() => refRBSheet?.current?.close()}
+            >
+              <Text style={styles.cancelButtonTextStyle}>{'Cancel'}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.logoutButtonStyle}>
+              <Text style={styles.logoutButtonTextStyle}>{'Yes, Logout'}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </RBSheet>
     </View>
   );
 };
@@ -219,5 +270,49 @@ const styles = StyleSheet.create({
   forwardIconContainer: {
     flex: 1,
     alignItems: 'flex-end',
+  },
+  logoutSheetContainer: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flex: 1,
+    paddingVertical: wp(10),
+  },
+  logoutTextStyle: {
+    color: Color.PRIMARY_COLOR,
+    fontSize: RFValue(20),
+    fontWeight: '500',
+  },
+  sheetButtonStyle: {
+    flexDirection: 'row',
+    height: 50,
+    width: '100%',
+    justifyContent: 'space-evenly',
+    marginTop: 10,
+  },
+  cancelButtonStyle: {
+    width: '40%',
+    height: '87%',
+    backgroundColor: Color.SIGNUP_BUTTON_COLOR,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  cancelButtonTextStyle: {
+    color: Color.PRIMARY_COLOR,
+    fontSize: RFValue(17),
+    fontWeight: '500',
+  },
+  logoutButtonStyle: {
+    width: '40%',
+    height: '87%',
+    backgroundColor: Color.PRIMARY_COLOR,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logoutButtonTextStyle: {
+    color: Color.WHITE,
+    fontSize: RFValue(17),
+    fontWeight: '500',
   },
 });
