@@ -12,7 +12,7 @@ export type RootStackParamList = {
   NotificationSettingScreen?: undefined;
   PasswordManagerScreen?: undefined;
   PrivacyPolicyScreen?: undefined;
-  HeplCenterScreen?: undefined;
+  HelpCenterScreen?: undefined;
   ScheduleScreen?: undefined;
   ChatScreen?: undefined;
   TabStack: NavigatorScreenParams<TabStackParamList>;

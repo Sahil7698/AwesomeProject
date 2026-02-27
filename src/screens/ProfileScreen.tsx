@@ -70,7 +70,7 @@ const ProfileScreen = () => {
       icon: require('../assets/icons/que_icon.png'),
       name: 'Help',
       onPress: () => {
-        navigation.navigate('HeplCenterScreen');
+        navigation.navigate('HelpCenterScreen');
       },
     },
     {

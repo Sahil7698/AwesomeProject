@@ -17,6 +17,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 interface TextInputType {
   title?: string;
   rightButtonComponent?: React.ReactNode;
+  leftButtonComponent?: React.ReactNode;
   viewStyle?: ViewStyle;
   textStyle?: TextStyle;
   onPress?: () => void;
@@ -44,6 +45,7 @@ const CustomTextInput = (props: TextInputType & TextInputProps) => {
           props.viewStyle,
         ]}
       >
+        {props.leftButtonComponent && props.leftButtonComponent}
         <TextInput
           ref={props.ref}
           {...props}

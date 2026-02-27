@@ -79,7 +79,7 @@ const AppNavigation = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="HeplCenterScreen"
+          name="HelpCenterScreen"
           component={HelpCenterScreen}
           options={{ headerShown: false }}
         />
