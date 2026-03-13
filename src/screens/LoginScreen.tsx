@@ -9,13 +9,18 @@ import {
   ImageSourcePropType,
   GestureResponderEvent,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Color } from '../assets/styles/colors';
 import CustomHeader from '../componets/CustomHeader';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import useCustomNavigation from '../hooks/useCustomNavigation';
 import { RFValue } from 'react-native-responsive-fontsize';
 import CustomTextInput from '../componets/CustomTextInput';
+import {
+  GoogleSignin,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
+import { WEB_CLIENT_ID } from '../utils/keys';
 
 interface SocialButtonProps {
   icon: ImageSourcePropType;
@@ -33,6 +38,41 @@ const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId: WEB_CLIENT_ID,
+      offlineAccess: true,
+    });
+  }, []);
+
+  const googleLoginBtn = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      const authToken = await GoogleSignin.getTokens();
+
+      console.log('Google Auth Success:', { userInfo, authToken });
+    } catch (error: any) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        console.log('User cancelled login');
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        console.log('Sign in already in progress');
+      } else if (error.code === '12500') {
+        Alert.alert(
+          'Config Error',
+          'Check your SHA-1 and Web Client ID in the Google Console.',
+        );
+      } else {
+        Alert.alert(
+          'Login Failed',
+          'Something went wrong with Google Sign-In',
+          error.meassge,
+        );
+        console.error(error);
+      }
+    }
+  };
 
   const handleLogin = () => {
     if (!email.trim() || !password.trim()) {
@@ -121,9 +161,7 @@ const LoginScreen = () => {
           <View style={styles.socialContainerBox}>
             <SocialButton
               icon={require('../assets/icons/google_logo.png')}
-              onPress={() => {
-                console.log('google');
-              }}
+              onPress={googleLoginBtn}
             />
             <SocialButton
               icon={require('../assets/icons/fb_logo.png')}

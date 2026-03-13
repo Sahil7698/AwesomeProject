@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "208318823172",
+    "project_id": "awesome-project-c0610",
+    "storage_bucket": "awesome-project-c0610.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208318823172:android:1219620402c1802d196e51",
+        "android_client_info": {
+          "package_name": "com.awesomeproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208318823172-482ul96nggplh2hm17n99kseksvp2ls8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiUPSQG-lt1Ln2JCnwWcUd_jwgybnwV_0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "208318823172-482ul96nggplh2hm17n99kseksvp2ls8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
