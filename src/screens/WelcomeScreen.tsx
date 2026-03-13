@@ -51,7 +51,12 @@ const WelcomeScreen = () => {
 export default WelcomeScreen;
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Color.WHITE,
+  },
   logoImage: { height: 251, width: 144 },
   textContainer: { marginHorizontal: 20, marginTop: 84 },
   textStyle: { fontSize: 12, textAlign: 'center', color: 'black' },
