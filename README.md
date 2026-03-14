@@ -95,3 +95,19 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+# Screen Short
+
+<img src = "https://github.com/Sahil7698/AwesomeProject/blob/main/src/assets/images/1.png" width = "200px"> <img src = "https://github.com/Sahil7698/AwesomeProject/blob/main/src/assets/images/2.png" width = "200px">
+<img src = "https://github.com/Sahil7698/AwesomeProject/blob/main/src/assets/images/3.png" width = "200px">
+<img src = "https://github.com/Sahil7698/AwesomeProject/blob/main/src/assets/images/4.png" width = "200px">
+<img src = "https://github.com/Sahil7698/AwesomeProject/blob/main/src/assets/images/5.png" width = "200px">
+<img src = "https://github.com/Sahil7698/AwesomeProject/blob/main/src/assets/images/6.png" width = "200px">
+<img src = "https://github.com/Sahil7698/AwesomeProject/blob/main/src/assets/images/7.png" width = "200px">
+<img src = "https://github.com/Sahil7698/AwesomeProject/blob/main/src/assets/images/8.png" width = "200px">
+<img src = "https://github.com/Sahil7698/AwesomeProject/blob/main/src/assets/images/9.png" width = "200px">
+<img src = "https://github.com/Sahil7698/AwesomeProject/blob/main/src/assets/images/10.png" width = "200px">
+<img src = "https://github.com/Sahil7698/AwesomeProject/blob/main/src/assets/images/11.png" width = "200px">
+<img src = "https://github.com/Sahil7698/AwesomeProject/blob/main/src/assets/images/12.png" width = "200px">
+<img src = "https://github.com/Sahil7698/AwesomeProject/blob/main/src/assets/images/13.png" width = "200px">
+<img src = "https://github.com/Sahil7698/AwesomeProject/blob/main/src/assets/images/14.png" width = "200px">
