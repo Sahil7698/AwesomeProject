@@ -15,6 +15,10 @@ export type RootStackParamList = {
   HelpCenterScreen?: undefined;
   ScheduleScreen?: undefined;
   ChatScreen?: undefined;
+  PaymentMethodScreen?: undefined;
+  PaymentScreen?: undefined;
+  PaymentSuccessScreen?: undefined;
+  AddCardScreen?: undefined;
   TabStack: NavigatorScreenParams<TabStackParamList>;
 };
 

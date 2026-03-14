@@ -17,6 +17,10 @@ import HelpCenterScreen from '../screens/HelpCenterScreen';
 import ScheduleScreen from '../screens/ScheduleScreen';
 import ChatScreen from '../screens/ChatScreen';
 import BottomTabStack from './BottomTabStack';
+import AddCardScreen from '../screens/AddCardScreen';
+import PaymentMethodScreen from '../screens/PaymentMethodScreen';
+import PaymentScreen from '../screens/PaymentScreen';
+import PaymentSuccessScreen from '../screens/PaymentSuccessScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const AppNavigation = () => {
@@ -96,6 +100,26 @@ const AppNavigation = () => {
         <Stack.Screen
           name="ChatScreen"
           component={ChatScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AddCardScreen"
+          component={AddCardScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="PaymentMethodScreen"
+          component={PaymentMethodScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="PaymentScreen"
+          component={PaymentScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="PaymentSuccessScreen"
+          component={PaymentSuccessScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

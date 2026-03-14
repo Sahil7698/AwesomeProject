@@ -54,7 +54,9 @@ const ProfileScreen = () => {
       id: 3,
       icon: require('../assets/icons/payment_icon.png'),
       name: 'Payment Method',
-      onPress: () => {},
+      onPress: () => {
+        navigation.navigate('PaymentMethodScreen');
+      },
     },
     {
       id: 4,
