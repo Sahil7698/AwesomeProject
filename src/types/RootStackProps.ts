@@ -20,23 +20,22 @@ export type RootStackParamList = {
   PaymentSuccessScreen?: undefined;
   AddCardScreen?: undefined;
   TabStack: NavigatorScreenParams<TabStackParamList>;
+  NotificationScreen?: undefined;
+  HomeStack?: NavigatorScreenParams<HomeStackParamList>;
+  DoctorsScreen?: { type?: string };
 };
 
 export type TabStackParamList = {
   ChatScreen?: undefined;
-  HomeScreen?: undefined;
+  HomeStack?: NavigatorScreenParams<HomeStackParamList>;
   ProfileScreen?: undefined;
   ScheduleScreen?: undefined;
-  // ProfileStack?: NavigatorScreenParams<ProfileStackParamList>;
 };
 
-export type ProfileStackParamList = {
-  ProfileScreen?: undefined;
-  EditProfileScreen?: undefined;
-  FavoriteScreen?: undefined;
-  PaymentHistoryScreen?: undefined;
-  WithdrawalHistoryScreen?: undefined;
-  RefundHistoryScreen?: undefined;
+export type HomeStackParamList = {
+  HomeScreen?: undefined;
+  NotificationScreen?: undefined;
+  DoctorsScreen?: { type?: string };
 };
 
 export type RootRouteProps<RouteName extends keyof RootStackParamList> =

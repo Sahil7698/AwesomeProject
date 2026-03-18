@@ -6,21 +6,20 @@ import WelcomeScreen from '../screens/WelcomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
 import ForgetPasswordScreen from '../screens/ForgetPasswordScreen';
-import HomeScreen from '../screens/HomeScreen';
-import ProfileScreen from '../screens/ProfileScreen';
 import EditProfileScreen from '../screens/EditProfileScreen';
 import SettingScreen from '../screens/SettingScreen';
 import NotificationSettingScreen from '../screens/NotificationSettingScreen';
 import PasswordManagerScreen from '../screens/PasswordManagerScreen';
 import PrivacyPolicyScreen from '../screens/PrivacyPolicyScreen';
 import HelpCenterScreen from '../screens/HelpCenterScreen';
-import ScheduleScreen from '../screens/ScheduleScreen';
-import ChatScreen from '../screens/ChatScreen';
 import BottomTabStack from './BottomTabStack';
 import AddCardScreen from '../screens/AddCardScreen';
 import PaymentMethodScreen from '../screens/PaymentMethodScreen';
 import PaymentScreen from '../screens/PaymentScreen';
 import PaymentSuccessScreen from '../screens/PaymentSuccessScreen';
+import NotificationScreen from '../screens/NotificationScreen';
+import HomeStack from './HomeStack';
+import DoctorsScreen from '../screens/DoctorsScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const AppNavigation = () => {
@@ -48,18 +47,8 @@ const AppNavigation = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="HomeScreen"
-          component={HomeScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
           name="ForgetPasswordScreen"
           component={ForgetPasswordScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ProfileScreen"
-          component={ProfileScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
@@ -93,16 +82,6 @@ const AppNavigation = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="ScheduleScreen"
-          component={ScheduleScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ChatScreen"
-          component={ChatScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
           name="AddCardScreen"
           component={AddCardScreen}
           options={{ headerShown: false }}
@@ -120,6 +99,21 @@ const AppNavigation = () => {
         <Stack.Screen
           name="PaymentSuccessScreen"
           component={PaymentSuccessScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="NotificationScreen"
+          component={NotificationScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="HomeStack"
+          component={HomeStack}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="DoctorsScreen"
+          component={DoctorsScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

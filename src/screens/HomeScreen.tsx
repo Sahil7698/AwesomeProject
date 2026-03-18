@@ -113,7 +113,14 @@ const HomeScreen = () => {
             <Text style={styles.userNameTextStyle}>{'John Doe'}</Text>
           </View>
           <View style={styles.headerButtonContainer}>
-            <TouchableOpacity style={styles.notificationButtonStyle}>
+            <TouchableOpacity
+              style={styles.notificationButtonStyle}
+              onPress={() =>
+                navigation.navigate('HomeStack', {
+                  screen: 'NotificationScreen',
+                })
+              }
+            >
               <Image
                 source={require('../assets/icons/notification_icon.png')}
                 style={styles.notificationIconStyle}
@@ -132,7 +139,14 @@ const HomeScreen = () => {
         </View>
       </View>
       <View style={styles.searchContainer}>
-        <TouchableOpacity style={styles.doctorsIconContainer}>
+        <TouchableOpacity
+          style={styles.doctorsIconContainer}
+          onPress={() =>
+            navigation.navigate('HomeStack', {
+              screen: 'DoctorsScreen',
+            })
+          }
+        >
           <Image
             source={require('../assets/icons/doctor_icon.png')}
             style={styles.doctorIconStyle}
@@ -140,7 +154,15 @@ const HomeScreen = () => {
           />
           <Text style={styles.doctorTextStyle}>{'Doctors'}</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.doctorsIconContainer}>
+        <TouchableOpacity
+          style={styles.doctorsIconContainer}
+          onPress={() =>
+            navigation.navigate('HomeStack', {
+              screen: 'DoctorsScreen',
+              params: { type: 'fav' },
+            })
+          }
+        >
           <Image
             source={require('../assets/icons/fav_icon.png')}
             style={styles.doctorIconStyle}

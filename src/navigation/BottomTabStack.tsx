@@ -8,10 +8,10 @@ import {
 import { RFValue } from 'react-native-responsive-fontsize';
 import { TabStackParamList } from '../types/RootStackProps';
 import { Color } from '../assets/styles/colors';
-import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import ScheduleScreen from '../screens/ScheduleScreen';
 import ChatScreen from '../screens/ChatScreen';
+import HomeStack from './HomeStack';
 
 const BottomTab = createBottomTabNavigator<TabStackParamList>();
 
@@ -45,8 +45,8 @@ const BottomTabStack = () => {
       }}
     >
       <BottomTab.Screen
-        name={'HomeScreen'}
-        component={HomeScreen}
+        name={'HomeStack'}
+        component={HomeStack}
         options={{
           // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({ focused }) => (
