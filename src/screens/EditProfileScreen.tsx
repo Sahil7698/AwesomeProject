@@ -15,6 +15,10 @@ import {
 import CustomHeader from '../componets/CustomHeader';
 import useCustomNavigation from '../hooks/useCustomNavigation';
 import CustomTextInput from '../componets/CustomTextInput';
+import {
+  ImageLibraryOptions,
+  launchImageLibrary,
+} from 'react-native-image-picker';
 
 const EditProfileScreen = () => {
   const [fullName, setFullName] = useState('');
@@ -22,9 +26,37 @@ const EditProfileScreen = () => {
   const [mobile, setMobile] = useState('');
   const [dob, setDob] = useState('');
   const navigation = useCustomNavigation('EditProfileScreen');
-
+  const [hasImage, setHasImage] = useState<{
+    uri: string;
+    type: string;
+    name: string;
+  } | null>(null);
   const handleUpdateButton = () => {
     console.log(fullName, email, mobile, dob);
+  };
+
+  const handleImage = () => {
+    const options: ImageLibraryOptions = {
+      mediaType: 'photo',
+      maxWidth: 1000,
+      maxHeight: 1000,
+      quality: 0.5,
+      includeBase64: false,
+    };
+    launchImageLibrary(options, response => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.errorMessage) {
+        console.log('Error' + response.errorMessage);
+      } else {
+        const newImage = {
+          uri: response.assets?.[0]?.uri ?? '',
+          type: response.assets?.[0]?.type ?? '',
+          name: response.assets?.[0]?.fileName ?? '',
+        };
+        setHasImage(newImage);
+      }
+    });
   };
   return (
     <View style={styles.container}>
@@ -52,11 +84,18 @@ const EditProfileScreen = () => {
         <View style={styles.profileImageContainer}>
           <View style={styles.profileImageStyle}>
             <Image
-              source={require('../assets/images/profile_img.png')}
+              source={
+                hasImage
+                  ? { uri: hasImage.uri }
+                  : require('../assets/images/profile_img.png')
+              }
               style={styles.profileImage}
-              resizeMode="contain"
+              resizeMode="cover"
             />
-            <TouchableOpacity style={styles.editIconContainer}>
+            <TouchableOpacity
+              style={styles.editIconContainer}
+              onPress={handleImage}
+            >
               <Image
                 source={require('../assets/icons/edit_profile_icon.png')}
                 style={styles.editIconStyle}
@@ -130,6 +169,7 @@ const styles = StyleSheet.create({
   profileImage: {
     width: wp(35),
     height: wp(35),
+    borderRadius: wp(100),
   },
   editIconContainer: {
     width: '25%',
