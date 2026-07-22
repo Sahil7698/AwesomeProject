@@ -130,7 +130,11 @@ const AllappintmentScreen = () => {
                 }
                 reBookOnPress={() => {}}
                 reviewOnPress={() => {
-                  navigation.navigate('ReviewScreen');
+                  navigation.navigate('ReviewScreen', {
+                    image: item?.avatar,
+                    name: item?.name,
+                    speciality: item?.specialty,
+                  });
                 }}
                 favouriteButton={() => toggleFavorite(item?.id)}
               />
@@ -147,9 +151,10 @@ const AllappintmentScreen = () => {
                 name={item?.name}
                 specialty={item?.specialty}
                 rating={item?.rating}
-                reBookOnPress={() => {}}
-                reviewOnPress={() => {
-                  navigation.navigate('ReviewScreen');
+                trueOnPress={() => {}}
+                falseOnPress={() => {}}
+                detailsOnPress={() => {
+                  navigation.navigate('CancelAppointment');
                 }}
               />
             );
@@ -164,7 +169,13 @@ const AllappintmentScreen = () => {
                 key={item?.id}
                 name={item?.name}
                 specialty={item?.specialty}
-                onPress={() => navigation.navigate('ReviewScreen')}
+                onPress={() =>
+                  navigation.navigate('ReviewScreen', {
+                    image: item?.avatar,
+                    name: item?.name,
+                    speciality: item?.specialty,
+                  })
+                }
               />
             );
           })}

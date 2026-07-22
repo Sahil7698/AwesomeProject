@@ -12,8 +12,9 @@ import { Color } from '../assets/styles/colors';
 interface upcomingAppointmentProps {
   name?: string;
   specialty?: string;
-  reBookOnPress?: () => void;
-  reviewOnPress?: () => void;
+  detailsOnPress?: () => void;
+  trueOnPress?: () => void;
+  falseOnPress?: () => void;
   avatar?: ImageSourcePropType;
   rating?: number;
 }
@@ -31,13 +32,13 @@ const UpcomingAppointmentTab = (props: upcomingAppointmentProps) => {
       <View style={styles.upcomingImageContainer}>
         <TouchableOpacity
           style={styles.upcomingDetailButton}
-          onPress={props?.reBookOnPress}
+          onPress={props?.detailsOnPress}
         >
           <Text style={styles.upcomingDetailButtonText}>{'Details'}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.upcomingReviewButton}
-          onPress={props?.reviewOnPress}
+          onPress={props?.trueOnPress}
         >
           <Image
             source={require('../assets/icons/right_icon.png')}
@@ -47,7 +48,7 @@ const UpcomingAppointmentTab = (props: upcomingAppointmentProps) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.upcomingReviewButton}
-          onPress={props?.reviewOnPress}
+          onPress={props?.falseOnPress}
         >
           <Image
             source={require('../assets/icons/false_icon.png')}

@@ -1,4 +1,5 @@
 import { NavigatorScreenParams, RouteProp } from '@react-navigation/native';
+import { ImageSourcePropType } from 'react-native';
 
 export type RootStackParamList = {
   WelcomeScreen?: undefined;
@@ -25,18 +26,22 @@ export type RootStackParamList = {
   DoctorsScreen?: { type?: string };
   PuzzleScreen?: undefined;
   ProductDetailsScreen?: { productid?: number };
-  AuthStack: NavigatorScreenParams<AuthStackParamList>
-  AppointmentStack: NavigatorScreenParams<AppointmentStackParamList>
+  AuthStack: NavigatorScreenParams<AuthStackParamList>;
+  AppointmentStack: NavigatorScreenParams<AppointmentStackParamList>;
   AllappintmentScreen?: undefined;
   CancelAppointment?: undefined;
-  ReviewScreen?: undefined;
+  ReviewScreen?: {
+    image?: ImageSourcePropType;
+    name?: string;
+    speciality?: string;
+  };
 };
 
 export type TabStackParamList = {
   ChatScreen?: undefined;
   HomeStack?: NavigatorScreenParams<HomeStackParamList>;
   ProfileScreen?: undefined;
-  AppointmentStack: NavigatorScreenParams<AppointmentStackParamList>
+  AppointmentStack: NavigatorScreenParams<AppointmentStackParamList>;
 };
 
 export type HomeStackParamList = {
@@ -54,7 +59,11 @@ export type AuthStackParamList = {
 export type AppointmentStackParamList = {
   AllappintmentScreen?: undefined;
   CancelAppointment?: undefined;
-  ReviewScreen?: undefined;
+  ReviewScreen?: {
+    image?: ImageSourcePropType;
+    name?: string;
+    speciality?: string;
+  };
 };
 
 export type RootRouteProps<RouteName extends keyof RootStackParamList> =
