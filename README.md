@@ -122,3 +122,5 @@ To learn more about React Native, take a look at the following resources:
 <img src = "https://github.com/Sahil7698/AwesomeProject/blob/main/src/assets/images/23.png" width = "200px">
 <img src = "https://github.com/Sahil7698/AwesomeProject/blob/main/src/assets/images/24.png" width = "200px">
 <img src = "https://github.com/Sahil7698/AwesomeProject/blob/main/src/assets/images/25.png" width = "200px">
+<img src = "https://github.com/Sahil7698/AwesomeProject/blob/main/src/assets/images/26.png" width = "200px">
+<img src = "https://github.com/Sahil7698/AwesomeProject/blob/main/src/assets/images/27.png" width = "200px">
