@@ -23,19 +23,38 @@ export type RootStackParamList = {
   NotificationScreen?: undefined;
   HomeStack?: NavigatorScreenParams<HomeStackParamList>;
   DoctorsScreen?: { type?: string };
+  PuzzleScreen?: undefined;
+  ProductDetailsScreen?: { productid?: number };
+  AuthStack: NavigatorScreenParams<AuthStackParamList>
+  AppointmentStack: NavigatorScreenParams<AppointmentStackParamList>
+  AllappintmentScreen?: undefined;
+  CancelAppointment?: undefined;
+  ReviewScreen?: undefined;
 };
 
 export type TabStackParamList = {
   ChatScreen?: undefined;
   HomeStack?: NavigatorScreenParams<HomeStackParamList>;
   ProfileScreen?: undefined;
-  ScheduleScreen?: undefined;
+  AppointmentStack: NavigatorScreenParams<AppointmentStackParamList>
 };
 
 export type HomeStackParamList = {
   HomeScreen?: undefined;
   NotificationScreen?: undefined;
   DoctorsScreen?: { type?: string };
+};
+
+export type AuthStackParamList = {
+  LoginScreen?: undefined;
+  SignupScreen?: undefined;
+  ForgetPasswordScreen?: { type?: string };
+};
+
+export type AppointmentStackParamList = {
+  AllappintmentScreen?: undefined;
+  CancelAppointment?: undefined;
+  ReviewScreen?: undefined;
 };
 
 export type RootRouteProps<RouteName extends keyof RootStackParamList> =

@@ -20,6 +20,10 @@ import PaymentSuccessScreen from '../screens/PaymentSuccessScreen';
 import NotificationScreen from '../screens/NotificationScreen';
 import HomeStack from './HomeStack';
 import DoctorsScreen from '../screens/DoctorsScreen';
+import AuthStack from './AuthStack';
+import PuzzleScreen from '../screens/PuzzleScreen';
+import ProductDetailsScreen from '../screens/ProductDetailsScreen';
+import AppointmentStack from './AppointmentStack';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const AppNavigation = () => {
@@ -114,6 +118,26 @@ const AppNavigation = () => {
         <Stack.Screen
           name="DoctorsScreen"
           component={DoctorsScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="PuzzleScreen"
+          component={PuzzleScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ProductDetailsScreen"
+          component={ProductDetailsScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AuthStack"
+          component={AuthStack}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AppointmentStack"
+          component={AppointmentStack}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

@@ -9,9 +9,9 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { TabStackParamList } from '../types/RootStackProps';
 import { Color } from '../assets/styles/colors';
 import ProfileScreen from '../screens/ProfileScreen';
-import ScheduleScreen from '../screens/ScheduleScreen';
 import ChatScreen from '../screens/ChatScreen';
 import HomeStack from './HomeStack';
+import AppointmentStack from './AppointmentStack';
 
 const BottomTab = createBottomTabNavigator<TabStackParamList>();
 
@@ -126,8 +126,8 @@ const BottomTabStack = () => {
         }}
       />
       <BottomTab.Screen
-        name={'ScheduleScreen'}
-        component={ScheduleScreen}
+        name={'AppointmentStack'}
+        component={AppointmentStack}
         options={{
           // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({ focused }) => (

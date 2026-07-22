@@ -128,7 +128,10 @@ const HomeScreen = () => {
               />
               <View style={styles.notificationDotStyle} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.settingButtonStyle}>
+            <TouchableOpacity
+              style={styles.settingButtonStyle}
+              onPress={() => navigation.navigate('SettingScreen')}
+            >
               <Image
                 source={require('../assets/icons/setting_icon.png')}
                 style={styles.notificationIconStyle}

@@ -78,7 +78,10 @@ const LoginScreen = () => {
     if (!email.trim() || !password.trim()) {
       Alert.alert('Enter Email or Password');
     } else {
-      console.log(email, password);
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'TabStack' }],
+      });
     }
   };
   return (
